@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LearnAble — Adaptive Learning Platform</title>
+<link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+<!-- ============ LOGIN SCREEN ============ -->
+<div id="login-screen" class="login-screen">
+  <div class="login-card">
+    <div class="login-mascot" aria-hidden="true">🦉</div>
+    <h1 class="login-title">Welcome to <span class="brand">LearnAble</span></h1>
+    <p class="login-sub">An adaptive learning space for every kind of learner.</p>
+    <form id="login-form" class="login-form">
+      <label for="teacher-name">Teacher name</label>
+      <input id="teacher-name" type="text" value="Ms. Sharma" required>
+      <button type="submit" class="btn btn-primary btn-large">Log in to LearnAble</button>
+      <p class="login-note">🔒 Demo login — no real password needed for this prototype.</p>
+    </form>
+  </div>
+  <div class="login-decor" aria-hidden="true">
+    <span class="decor cloud c1">☁️</span>
+    <span class="decor cloud c2">☁️</span>
+    <span class="decor star s1">⭐</span>
+    <span class="decor star s2">✨</span>
+    <span class="decor leaf l1">🍃</span>
+    <span class="decor book b1">📚</span>
+  </div>
+</div>
+
+<!-- ============ APP SHELL ============ -->
+<div id="app-shell" class="app-shell hidden">
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- HEADER -->
+  <header class="app-header">
+    <div class="header-left">
+      <button id="nav-toggle" class="icon-btn nav-toggle" aria-label="Toggle navigation menu" aria-expanded="true">☰</button>
+      <span class="mascot" aria-hidden="true">🦉</span>
+      <span class="app-title">LearnAble</span>
+    </div>
+    <nav class="header-nav" id="top-nav" aria-label="Primary">
+      <a href="#dashboard" data-route="dashboard">Dashboard</a>
+      <a href="#students" data-route="students">Students</a>
+      <a href="#activities" data-route="activities">Activities</a>
+      <a href="#reports" data-route="reports">Reports</a>
+      <a href="#accessibility" data-route="accessibility">Accessibility</a>
+      <a href="#settings" data-route="settings">Settings</a>
+    </nav>
+    <div class="header-right">
+      <div class="profile-menu">
+        <button id="profile-btn" class="profile-btn" aria-haspopup="true" aria-expanded="false">
+          <span class="avatar" aria-hidden="true">👩‍🏫</span>
+          <span id="header-teacher-name" class="profile-name">Ms. Sharma</span>
+          <span aria-hidden="true">▾</span>
+        </button>
+        <div id="profile-dropdown" class="profile-dropdown hidden" role="menu">
+          <a href="#settings" role="menuitem">⚙️ Settings</a>
+          <a href="#accessibility" role="menuitem">♿ Accessibility</a>
+          <button id="logout-btn" role="menuitem">🚪 Log out</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="app-body">
+    <!-- SIDEBAR (mobile-friendly duplicate nav) -->
+    <aside class="sidebar" id="sidebar" aria-label="Sidebar navigation">
+      <nav>
+        <a href="#dashboard" data-route="dashboard">🏠 <span>Dashboard</span></a>
+        <a href="#students" data-route="students">🧒 <span>Students</span></a>
+        <a href="#activities" data-route="activities">🎯 <span>Activities</span></a>
+        <a href="#reports" data-route="reports">📊 <span>Reports</span></a>
+        <a href="#accessibility" data-route="accessibility">♿ <span>Accessibility</span></a>
+        <a href="#settings" data-route="settings">⚙️ <span>Settings</span></a>
+      </nav>
+      <div class="sidebar-decor" aria-hidden="true">🌟🍎📖🖍️</div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main id="main-content" class="main-content" tabindex="-1">
+
+      <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+
+      <section id="view-dashboard" class="view"></section>
+      <section id="view-students" class="view"></section>
+      <section id="view-student-profile" class="view"></section>
+      <section id="view-activities" class="view"></section>
+      <section id="view-game-setup" class="view"></section>
+      <section id="view-game-play" class="view"></section>
+      <section id="view-reports" class="view"></section>
+      <section id="view-accessibility" class="view"></section>
+      <section id="view-settings" class="view"></section>
+
+    </main>
+  </div>
+</div>
+
+<script src="/static/js/data.js"></script>
+<script src="/static/js/accessibility.js"></script>
+<script src="/static/js/students.js"></script>
+<script src="/static/js/dashboard.js"></script>
+<script src="/static/js/games.js"></script>
+<script src="/static/js/reports.js"></script>
+<script src="/static/js/app.js"></script>
+</body>
+</html>
