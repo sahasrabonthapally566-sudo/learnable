@@ -1,0 +1,5 @@
+# LearnAble is a fully client-side app (data lives in localStorage), so
+# Netlify serves the learnable/ folder as a static site. No build step needed.
+[build]
+  publish = "learnable"
+  command = ""
