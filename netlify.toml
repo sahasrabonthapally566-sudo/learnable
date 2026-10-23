@@ -3,3 +3,10 @@
 [build]
   publish = "learnable"
   command = ""
+
+# Single-page app: any path that isn't a real file (old links, bookmarks,
+# /dashboard, etc.) loads the app instead of Netlify's "Page not found".
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
