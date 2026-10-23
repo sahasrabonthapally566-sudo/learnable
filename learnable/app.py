@@ -3,7 +3,7 @@ LearnAble - AI-Powered Adaptive Learning Platform for Children with Learning Dif
 Local prototype server.
 THIS IS JUST A PROTOTYPE. NOT COMPLETE. NOT SECURE.
 for more info contact 8978064566,
-This Flask app simply serves the single-page application (templates/index.html)
+This Flask app simply serves the single-page application (index.html)
 and its static assets (CSS/JS). All application data (students, sessions,
 settings) is stored client-side in the browser's localStorage, so the app
 keeps working offline after the first load and survives page refreshes.
@@ -15,7 +15,7 @@ Run with:
 Then open http://127.0.0.1:5000 in your browser.
 """
 
-from flask import Flask, render_template
+from flask import Flask, send_from_directory
 
 app = Flask(__name__)
 
@@ -23,7 +23,7 @@ app = Flask(__name__)
 @app.route("/")
 def index():
     """Serve the LearnAble single-page application."""
-    return render_template("index.html")
+    return send_from_directory(app.root_path, "index.html")
 
 
 if __name__ == "__main__":

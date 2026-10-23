@@ -96,8 +96,7 @@ learnable/
 ├── app.py                  # Flask server (serves the SPA)
 ├── requirements.txt
 ├── README.md
-├── templates/
-│   └── index.html          # Single-page app shell
+├── index.html              # Single-page app shell
 └── static/
     ├── css/
     │   └── style.css       # Design system (pastel, accessible, responsive)
