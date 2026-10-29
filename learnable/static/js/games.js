@@ -342,7 +342,9 @@ function renderSessionSummary(ctx, session, accuracy){
     </div>
   `;
   document.getElementById("summary-again").addEventListener("click", () => {
-    window.location.hash = `#play/${ctx.activity.id}/${ctx.student.id}`;
+    // The URL is already #play/<activity>/<student>, so re-assigning the hash
+    // would not fire hashchange. Restart the setup screen directly instead.
+    startGameFlow(ctx.activity.id, ctx.student.id);
   });
   document.getElementById("summary-report").addEventListener("click", () => {
     window.location.hash = `#reports/${ctx.student.id}`;
