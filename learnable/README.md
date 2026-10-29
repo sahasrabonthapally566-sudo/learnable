@@ -44,22 +44,35 @@ remembered until you log out.
 ## 4. What's fully playable
 
 Out of the 44 activities listed in the Activity Library (across 8
-categories), the following **8 games are fully functional** end-to-end,as to demonstrate the full idea,
-including teacher-configurable rounds/duration, live scoring, and reports:
+categories), **24 games are fully functional** end-to-end — three per
+category — including teacher-configurable rounds/duration, live scoring,
+and reports:
 
-| Category            | Playable Activity              |
-|----------------------|--------------------------------|
-| Autism               | Regular Things                 |
-| ADHD                  | Sack Bear                      |
-| Dyslexia              | Word Recognition by Sound      |
-| Dyscalculia           | Counting Objects                |
-| Dyspraxia             | Shape Tracing                   |
-| Visual Impairment     | Animal Sounds                   |
-| Hearing Impairment    | Visual Storytelling             |
-| Dysgraphia            | Letter Tracing                  |
+| Category            | Playable activities |
+|---------------------|---------------------|
+| Autism              | Regular Things · Color Matching · Shape Identifying |
+| ADHD                | Sack Bear · Color Tapping · Number Tapping |
+| Dyslexia            | Word Recognition by Sound · Letter Sound Matching · Rhymes / Songs |
+| Dyscalculia         | Counting Objects · Addition / Subtraction · Math Puzzles |
+| Dyspraxia           | Shape Tracing · Color Matching (drag & drop) · Tapping Count |
+| Visual Impairment   | Animal Sounds · Sound Memory · Guided Audio |
+| Hearing Impairment  | Visual Storytelling · Pattern Recognition · Visual Memory |
+| Dysgraphia          | Letter Tracing · Pattern Replication · Alphabet / Number Writing |
 
-Every other activity appears in the Activity Library clearly marked
-**"Coming Soon."**
+What each new game practises:
+
+- **Color Matching / Shape Identifying (Autism)** – predictable layouts; colours and shapes are paired with their names.
+- **Color Tapping / Number Tapping (ADHD)** – sustained attention and impulse control (a wrong tap ends the round; running out of time is recorded as *missed*).
+- **Letter Sound Matching / Rhymes (Dyslexia)** – hear a word, link it to its first letter; spot rhyming words.
+- **Addition / Subtraction / Math Puzzles (Dyscalculia)** – numbers always shown with pictures; missing-number patterns.
+- **Color Matching / Tapping Count (Dyspraxia)** – large, forgiving drag targets (tap-to-pick also works); controlled tapping.
+- **Sound Memory / Guided Audio (Visual Impairment)** – audio-first, big high-contrast controls; Sound Memory uses generated tones.
+- **Pattern Recognition / Visual Memory (Hearing Impairment)** – entirely visual, no audio required.
+- **Pattern Replication / Alphabet-Number Writing (Dysgraphia)** – pre-writing lines and number formation, scored by how closely the line follows the guide.
+
+Mild vs. Moderate support levels change the difficulty (fewer choices,
+smaller numbers, larger tracing tolerance for Moderate). Every other activity
+appears in the Activity Library clearly marked **"Coming Soon."**
 
 ## 5. Key features
 
@@ -105,7 +118,8 @@ learnable/
     │   ├── accessibility.js# Accessibility + Settings pages
     │   ├── students.js     # Student management + profile
     │   ├── dashboard.js    # Teacher dashboard
-    │   ├── games.js        # Game engine + all 8 playable games
+    │   ├── games.js        # Game engine + the first 8 playable games
+    │   ├── games_extra.js  # 16 more playable games (2 per category)
     │   ├── reports.js      # Performance reports
     │   └── app.js          # Router, login, nav wiring
     └── service-worker.js   # Offline caching of the app shell
