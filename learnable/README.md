@@ -37,9 +37,9 @@ demo data at any time from **Settings → Reset demo data**.
 
 ## 3. Logging in
 
-Login is simulated for this prototype — enter any teacher name on the
-welcome screen and click **"Log in to LearnAble"**. Your name is
-remembered until you log out.
+This is a **test login** (simulated, no password). The teacher name on the
+welcome screen is pre-filled as **Anuradha K** — just click
+**"Log in to LearnAble"**. The name is remembered until you log out.
 
 ## 4. What's fully playable
 
