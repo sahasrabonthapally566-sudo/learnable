@@ -67,8 +67,9 @@ Every other activity appears in the Activity Library clearly marked
   accuracy, students needing attention, quick actions.
 - **Students** — add / edit / delete students, set learning category and
   Mild/Moderate support level, view individual profiles.
-- **Activity Library** — all 8 categories and every listed activity;
-  playable activities launch directly into the game flow.
+- **Activity Library** — pick a student first; only that student's own
+  activities (their learning category) are shown. Playable activities
+  launch directly into the game flow for that student.
 - **Adaptive game flow** — teacher selects rounds (5/10/15/20) or, for
   Sack Bear, a duration (30/60/90/120s) before every session. For
   Moderate-support students, the teacher can optionally run a **Teacher

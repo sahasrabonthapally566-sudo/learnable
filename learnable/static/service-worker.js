@@ -3,7 +3,7 @@
    first load even without an internet connection. All actual data
    (students, sessions, settings) lives in localStorage, not here. */
 
-const CACHE_NAME = "learnable-cache-v1";
+const CACHE_NAME = "learnable-cache-v2";
 const ASSETS_TO_CACHE = [
   "/",
   "/static/css/style.css",
