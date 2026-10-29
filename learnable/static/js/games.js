@@ -6,29 +6,69 @@
 ========================================================= */
 
 /* ---------------- Activity Library ---------------- */
+/* Activities are only shown once a specific student is selected, and only
+   that student's own activities (their learning category) are listed. */
 
-function renderActivitiesView(preselectStudentId){
+function renderActivitiesView(selectedStudentId){
   const el = document.getElementById("view-activities");
   const students = getStudents();
-  const preselect = preselectStudentId ? getStudent(preselectStudentId) : null;
+  const student = selectedStudentId ? getStudent(selectedStudentId) : null;
+  const category = student ? findCategory(student.category) : null;
+
+  const subtitle = student
+    ? `Choose an activity for <strong>${escapeHtml(student.name)}</strong>.`
+    : "Select a student to see their activities.";
 
   el.innerHTML = `
     <div class="page-header">
       <div>
         <h1>🎯 Activity Library</h1>
-        <p class="page-sub">${preselect ? `Choose an activity for <strong>${escapeHtml(preselect.name)}</strong>.` : "Browse activities across all 8 learning categories."}</p>
+        <p class="page-sub">${subtitle}</p>
       </div>
-      ${preselect ? `<span class="badge badge-mild" style="font-size:0.9rem;">${findCategory(preselect.category)?.icon || ""} ${escapeHtml(preselect.name)}</span>` : ""}
+      ${students.length ? `
+      <div class="form-row" style="min-width:220px;">
+        <label for="activity-student-select">Select student</label>
+        <select id="activity-student-select">
+          <option value="" ${student ? "" : "selected"}>— Choose a student —</option>
+          ${students.map(s => `<option value="${s.id}" ${student && s.id === student.id ? "selected" : ""}>${escapeHtml(s.name)}</option>`).join("")}
+        </select>
+      </div>` : ""}
     </div>
     <div id="activity-categories"></div>
   `;
 
   const wrap = document.getElementById("activity-categories");
-  wrap.innerHTML = CATEGORIES.map(cat => `
+
+  if (!students.length){
+    wrap.innerHTML = `<div class="empty-state"><span class="empty-emoji">🧸</span>
+      <p>No students yet. Add a student to see their activities.</p>
+      <a href="#students" class="btn btn-primary">Go to Students</a></div>`;
+    return;
+  }
+
+  const select = document.getElementById("activity-student-select");
+  select.addEventListener("change", () => {
+    window.location.hash = select.value ? `#activities/${select.value}` : "#activities";
+  });
+
+  if (!student){
+    wrap.innerHTML = `<div class="empty-state"><span class="empty-emoji">👆</span>
+      <p>Choose a student above to see the activities for them.</p></div>`;
+    return;
+  }
+
+  if (!category){
+    wrap.innerHTML = `<div class="empty-state"><span class="empty-emoji">🤔</span>
+      <p>${escapeHtml(student.name)} doesn't have a learning category yet. Edit their profile to choose one.</p>
+      <a href="#student/${student.id}" class="btn btn-primary">Open profile</a></div>`;
+    return;
+  }
+
+  wrap.innerHTML = `
     <div class="category-block">
-      <h2 class="category-title">${cat.icon} ${cat.label}</h2>
+      <h2 class="category-title">${category.icon} ${category.label} activities for ${escapeHtml(student.name)}</h2>
       <div class="grid grid-4">
-        ${cat.activities.map(act => `
+        ${category.activities.map(act => `
           <div class="card activity-tile ${act.playable ? "playable" : "soon"}">
             <div class="emoji">${act.playable ? "🟢" : "⏳"}</div>
             <div style="font-weight:700;">${escapeHtml(act.name)}</div>
@@ -39,47 +79,13 @@ function renderActivitiesView(preselectStudentId){
         `).join("")}
       </div>
     </div>
-  `).join("");
+  `;
 
   wrap.addEventListener("click", (e) => {
     const btn = e.target.closest("button[data-activity]");
     if (!btn) return;
-    const activityId = btn.dataset.activity;
-    if (preselect){
-      window.location.hash = `#play/${activityId}/${preselect.id}`;
-    } else {
-      openStudentPickerForActivity(activityId);
-    }
+    window.location.hash = `#play/${btn.dataset.activity}/${student.id}`;
   });
-}
-
-function openStudentPickerForActivity(activityId){
-  const students = getStudents();
-  const activity = findActivity(activityId);
-  const overlay = document.createElement("div");
-  overlay.className = "modal-overlay";
-  overlay.innerHTML = `
-    <div class="modal" role="dialog" aria-modal="true">
-      <h2>Who is playing "${escapeHtml(activity.name)}"?</h2>
-      ${students.length ? `
-        <div class="grid grid-2" id="picker-grid">
-          ${students.map(s => `<button class="btn btn-outline" data-id="${s.id}" style="justify-content:flex-start;">${findCategory(s.category)?.icon || "🙂"} ${escapeHtml(s.name)}</button>`).join("")}
-        </div>` : `<p>No students yet — add one first from the Students page.</p>`}
-      <div class="form-actions"><button class="btn btn-outline" id="picker-cancel">Cancel</button></div>
-    </div>
-  `;
-  document.body.appendChild(overlay);
-  overlay.addEventListener("click", e => { if (e.target === overlay) overlay.remove(); });
-  document.getElementById("picker-cancel").addEventListener("click", () => overlay.remove());
-  const grid = document.getElementById("picker-grid");
-  if (grid){
-    grid.addEventListener("click", e => {
-      const btn = e.target.closest("button[data-id]");
-      if (!btn) return;
-      overlay.remove();
-      window.location.hash = `#play/${activityId}/${btn.dataset.id}`;
-    });
-  }
 }
 
 /* ---------------- Text-to-speech helper ---------------- */
@@ -126,7 +132,7 @@ function startGameFlow(activityId, studentId){
         <h1>${activity.categoryIcon} ${escapeHtml(activity.name)}</h1>
         <p class="page-sub">Setting up for <strong>${escapeHtml(student.name)}</strong> · ${supportBadge(student.supportLevel)}</p>
       </div>
-      <a href="#activities" class="btn btn-outline">← Back to Library</a>
+      <a href="#activities/${student.id}" class="btn btn-outline">← Back to Library</a>
     </div>
 
     <div class="card">
