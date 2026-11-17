@@ -26,36 +26,36 @@ const CATEGORIES = [
   {
     key: "autism", label: "Autism", icon: "🧩",
     activities: [
-      { id: "autism_talking_friend", name: "Talking Friend", playable: false },
+      { id: "autism_talking_friend", name: "Talking Friend", playable: true, gameKey: "talkingFriend" },
       { id: "autism_color_matching", name: "Color Matching", playable: true, gameKey: "autismColorMatching" },
       { id: "autism_shape_identifying", name: "Shape Identifying", playable: true, gameKey: "shapeIdentifying" },
       { id: "autism_regular_things", name: "Regular Things", playable: true, gameKey: "regularThings" },
-      { id: "autism_memory_game", name: "Memory Game", playable: false }
+      { id: "autism_memory_game", name: "Memory Game", playable: true, gameKey: "autismMemory" }
     ]
   },
   {
     key: "adhd", label: "ADHD", icon: "⚡",
     activities: [
       { id: "adhd_sack_bear", name: "Sack Bear", playable: true, gameKey: "sackBear" },
-      { id: "adhd_fruit_slice", name: "Fruit Slice", playable: false },
+      { id: "adhd_fruit_slice", name: "Fruit Slice", playable: true, gameKey: "fruitSlice" },
       { id: "adhd_color_tapping", name: "Color Tapping", playable: true, gameKey: "colorTapping" },
       { id: "adhd_number_tapping", name: "Number Tapping", playable: true, gameKey: "numberTapping" },
-      { id: "adhd_memory_game", name: "Memory Game", playable: false },
-      { id: "adhd_counting", name: "Counting", playable: false },
-      { id: "adhd_object_recognition", name: "Object Recognition", playable: false }
+      { id: "adhd_memory_game", name: "Memory Game", playable: true, gameKey: "adhdMemory" },
+      { id: "adhd_counting", name: "Counting", playable: true, gameKey: "adhdCounting" },
+      { id: "adhd_object_recognition", name: "Object Recognition", playable: true, gameKey: "findTheObject" }
     ]
   },
   {
     key: "dyslexia", label: "Dyslexia", icon: "🔤",
     activities: [
-      { id: "dyslexia_pronunciation", name: "Pronunciation Practice", playable: false },
+      { id: "dyslexia_pronunciation", name: "Pronunciation Practice", playable: true, gameKey: "pronunciation" },
       { id: "dyslexia_letter_sound", name: "Letter Sound Matching", playable: true, gameKey: "letterSound" },
       { id: "dyslexia_word_recognition", name: "Word Recognition by Sound", playable: true, gameKey: "wordRecognition" },
-      { id: "dyslexia_color_association", name: "Color Association", playable: false },
+      { id: "dyslexia_color_association", name: "Color Association", playable: true, gameKey: "colorAssociation" },
       { id: "dyslexia_rhymes", name: "Rhymes / Songs", playable: true, gameKey: "rhymeTime" },
-      { id: "dyslexia_rhythm", name: "Rhythm Activities", playable: false },
-      { id: "dyslexia_storytelling", name: "Storytelling", playable: false },
-      { id: "dyslexia_interactive_storybooks", name: "Interactive Storybooks", playable: false }
+      { id: "dyslexia_rhythm", name: "Rhythm Activities", playable: true, gameKey: "rhythmTap" },
+      { id: "dyslexia_storytelling", name: "Storytelling", playable: true, gameKey: "readingStory" },
+      { id: "dyslexia_interactive_storybooks", name: "Interactive Storybooks", playable: true, gameKey: "storybook" }
     ]
   },
   {
@@ -63,10 +63,10 @@ const CATEGORIES = [
     activities: [
       { id: "dyscalculia_counting_objects", name: "Counting Objects", playable: true, gameKey: "countingObjects" },
       { id: "dyscalculia_add_sub", name: "Addition / Subtraction", playable: true, gameKey: "addSub" },
-      { id: "dyscalculia_mul_div", name: "Multiplication / Division", playable: false },
+      { id: "dyscalculia_mul_div", name: "Multiplication / Division", playable: true, gameKey: "mulDiv" },
       { id: "dyscalculia_math_puzzles", name: "Math Puzzles", playable: true, gameKey: "mathPuzzles" },
-      { id: "dyscalculia_board_games", name: "Board / Card Games", playable: false },
-      { id: "dyscalculia_digital_puzzles", name: "Digital Puzzles", playable: false }
+      { id: "dyscalculia_board_games", name: "Board / Card Games", playable: true, gameKey: "boardCards" },
+      { id: "dyscalculia_digital_puzzles", name: "Digital Puzzles", playable: true, gameKey: "makeTheSum" }
     ]
   },
   {
@@ -75,44 +75,44 @@ const CATEGORIES = [
       { id: "dyspraxia_color_matching", name: "Color Matching", playable: true, gameKey: "dragColorMatch" },
       { id: "dyspraxia_shape_tracing", name: "Shape Tracing", playable: true, gameKey: "shapeTracing" },
       { id: "dyspraxia_tapping_count", name: "Tapping Count", playable: true, gameKey: "tappingCount" },
-      { id: "dyspraxia_sack_bear", name: "Sack Bear", playable: false }
+      { id: "dyspraxia_sack_bear", name: "Sack Bear", playable: true, gameKey: "sackBear" }
     ]
   },
   {
     key: "visual", label: "Visual Impairment", icon: "🎧",
     activities: [
       { id: "visual_animal_sounds", name: "Animal Sounds", playable: true, gameKey: "animalSounds" },
-      { id: "visual_traffic_sounds", name: "Traffic Sounds", playable: false },
-      { id: "visual_nature_sounds", name: "Nature Sounds", playable: false },
-      { id: "visual_storytelling", name: "Storytelling", playable: false },
+      { id: "visual_traffic_sounds", name: "Traffic Sounds", playable: true, gameKey: "trafficSounds" },
+      { id: "visual_nature_sounds", name: "Nature Sounds", playable: true, gameKey: "natureSounds" },
+      { id: "visual_storytelling", name: "Storytelling", playable: true, gameKey: "audioStory" },
       { id: "visual_guided_audio", name: "Guided Audio", playable: true, gameKey: "guidedAudio" },
       { id: "visual_sound_memory", name: "Sound Memory", playable: true, gameKey: "soundMemory" },
-      { id: "visual_sequential_sounds", name: "Sequential Sounds", playable: false }
+      { id: "visual_sequential_sounds", name: "Sequential Sounds", playable: true, gameKey: "sequentialSounds" }
     ]
   },
   {
     key: "hearing", label: "Hearing Impairment", icon: "👀",
     activities: [
-      { id: "hearing_alphabet_visual", name: "Alphabet Visual", playable: false },
-      { id: "hearing_color_games", name: "Color Games", playable: false },
-      { id: "hearing_shape_games", name: "Shape Games", playable: false },
+      { id: "hearing_alphabet_visual", name: "Alphabet Visual", playable: true, gameKey: "alphabetVisual" },
+      { id: "hearing_color_games", name: "Color Games", playable: true, gameKey: "colorMixing" },
+      { id: "hearing_shape_games", name: "Shape Games", playable: true, gameKey: "shapeGames" },
       { id: "hearing_pattern_recognition", name: "Pattern Recognition", playable: true, gameKey: "patternRecognition" },
-      { id: "hearing_object_recognition", name: "Object Recognition", playable: false },
+      { id: "hearing_object_recognition", name: "Object Recognition", playable: true, gameKey: "objectWords" },
       { id: "hearing_visual_storytelling", name: "Visual Storytelling", playable: true, gameKey: "visualStorytelling" },
       { id: "hearing_visual_memory", name: "Visual Memory", playable: true, gameKey: "visualMemory" },
-      { id: "hearing_number_games", name: "Number Games", playable: false }
+      { id: "hearing_number_games", name: "Number Games", playable: true, gameKey: "quantityCompare" }
     ]
   },
   {
     key: "dysgraphia", label: "Dysgraphia", icon: "✍️",
     activities: [
-      { id: "dysgraphia_free_drawing", name: "Free Drawing", playable: false },
+      { id: "dysgraphia_free_drawing", name: "Free Drawing", playable: true, gameKey: "freeDrawing" },
       { id: "dysgraphia_letter_tracing", name: "Letter Tracing", playable: true, gameKey: "letterTracing" },
-      { id: "dysgraphia_handwriting", name: "Handwriting Practice", playable: false },
-      { id: "dysgraphia_coloring", name: "Coloring Challenges", playable: false },
+      { id: "dysgraphia_handwriting", name: "Handwriting Practice", playable: true, gameKey: "handwriting" },
+      { id: "dysgraphia_coloring", name: "Coloring Challenges", playable: true, gameKey: "coloringChallenge" },
       { id: "dysgraphia_pattern_replication", name: "Pattern Replication", playable: true, gameKey: "patternReplication" },
       { id: "dysgraphia_alphabet_writing", name: "Alphabet / Number Writing", playable: true, gameKey: "numberWriting" },
-      { id: "dysgraphia_memory_strengthening", name: "Memory Strengthening", playable: false }
+      { id: "dysgraphia_memory_strengthening", name: "Memory Strengthening", playable: true, gameKey: "shapeMemoryDraw" }
     ]
   }
 ];
