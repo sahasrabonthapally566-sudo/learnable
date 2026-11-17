@@ -43,36 +43,34 @@ welcome screen is pre-filled as **Anuradha K** — just click
 
 ## 4. What's fully playable
 
-Out of the 44 activities listed in the Activity Library (across 8
-categories), **24 games are fully functional** end-to-end — three per
-category — including teacher-configurable rounds/duration, live scoring,
-and reports:
+**All 52 activities in the Activity Library are now playable** across the 8
+categories. Every game supports teacher-configurable rounds (or duration for
+Sack Bear), live scoring, and automatic reports (accuracy, correct / incorrect /
+missed, average response time, hints used).
 
-| Category            | Playable activities |
-|---------------------|---------------------|
-| Autism              | Regular Things · Color Matching · Shape Identifying |
-| ADHD                | Sack Bear · Color Tapping · Number Tapping |
-| Dyslexia            | Word Recognition by Sound · Letter Sound Matching · Rhymes / Songs |
-| Dyscalculia         | Counting Objects · Addition / Subtraction · Math Puzzles |
-| Dyspraxia           | Shape Tracing · Color Matching (drag & drop) · Tapping Count |
-| Visual Impairment   | Animal Sounds · Sound Memory · Guided Audio |
-| Hearing Impairment  | Visual Storytelling · Pattern Recognition · Visual Memory |
-| Dysgraphia          | Letter Tracing · Pattern Replication · Alphabet / Number Writing |
+| Category            | Activities |
+|---------------------|-----------|
+| Autism (5)          | Talking Friend · Color Matching · Shape Identifying · Regular Things · Memory Game |
+| ADHD (7)            | Sack Bear · Fruit Slice · Color Tapping · Number Tapping · Memory Game · Counting · Object Recognition |
+| Dyslexia (8)        | Pronunciation Practice · Letter Sound Matching · Word Recognition by Sound · Color Association · Rhymes / Songs · Rhythm Activities · Storytelling · Interactive Storybooks |
+| Dyscalculia (6)     | Counting Objects · Addition / Subtraction · Multiplication / Division · Math Puzzles · Board / Card Games · Digital Puzzles |
+| Dyspraxia (4)       | Color Matching (drag & drop) · Shape Tracing · Tapping Count · Sack Bear |
+| Visual Impairment (7) | Animal Sounds · Traffic Sounds · Nature Sounds · Storytelling · Guided Audio · Sound Memory · Sequential Sounds |
+| Hearing Impairment (8) | Alphabet Visual · Color Games · Shape Games · Pattern Recognition · Object Recognition · Visual Storytelling · Visual Memory · Number Games |
+| Dysgraphia (7)      | Free Drawing · Letter Tracing · Handwriting Practice · Coloring Challenges · Pattern Replication · Alphabet / Number Writing · Memory Strengthening |
 
-What each new game practises:
+How accuracy is worked out:
 
-- **Color Matching / Shape Identifying (Autism)** – predictable layouts; colours and shapes are paired with their names.
-- **Color Tapping / Number Tapping (ADHD)** – sustained attention and impulse control (a wrong tap ends the round; running out of time is recorded as *missed*).
-- **Letter Sound Matching / Rhymes (Dyslexia)** – hear a word, link it to its first letter; spot rhyming words.
-- **Addition / Subtraction / Math Puzzles (Dyscalculia)** – numbers always shown with pictures; missing-number patterns.
-- **Color Matching / Tapping Count (Dyspraxia)** – large, forgiving drag targets (tap-to-pick also works); controlled tapping.
-- **Sound Memory / Guided Audio (Visual Impairment)** – audio-first, big high-contrast controls; Sound Memory uses generated tones.
-- **Pattern Recognition / Visual Memory (Hearing Impairment)** – entirely visual, no audio required.
-- **Pattern Replication / Alphabet-Number Writing (Dysgraphia)** – pre-writing lines and number formation, scored by how closely the line follows the guide.
+- **Automatically scored** – almost every game (multiple choice, tapping, matching, memory boards, drag-and-drop, rhythm timing, sound recognition). Wrong taps are *incorrect*; running out of time or leaving a round blank is *missed*.
+- **Tracing / drawing games** (Letter Tracing, Pattern Replication, Alphabet / Number Writing, Handwriting Practice, Memory Strengthening) – scored by how much of the guide the line covered while staying on it.
+- **Helper-marked** – Pronunciation Practice and Free Drawing can't be judged by a computer, so the teacher or parent taps "✅ Said it clearly" / "✅ Yes" or "🔁 Needs practice" / "Not yet".
 
-Mild vs. Moderate support levels change the difficulty (fewer choices,
-smaller numbers, larger tracing tolerance for Moderate). Every other activity
-appears in the Activity Library clearly marked **"Coming Soon."**
+Sounds in the Visual Impairment games (car horn, bell, siren, train, bird, rain,
+thunder, wind, drum…) and in Sound Memory / Rhythm are generated in the browser
+with the Web Audio API — no audio files are required.
+
+Mild vs. Moderate support levels change the difficulty (fewer choices, smaller
+numbers, longer time limits, larger tracing tolerance for Moderate).
 
 ## 5. Key features
 
@@ -121,6 +119,8 @@ learnable/
     │   ├── dashboard.js    # Teacher dashboard
     │   ├── games.js        # Game engine + the first 8 playable games
     │   ├── games_extra.js  # 16 more playable games (2 per category)
+    │   ├── games_more.js   # 16 more: Autism, ADHD, Dyslexia, Dyscalculia
+    │   ├── games_more2.js  # 12 more: Visual, Hearing, Dysgraphia (+ synthesised sounds)
     │   ├── reports.js      # Performance reports
     │   └── app.js          # Router, login, nav wiring
     └── service-worker.js   # Offline caching of the app shell
