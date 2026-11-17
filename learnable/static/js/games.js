@@ -105,7 +105,13 @@ function speak(text){
 
 const TEACHER_MODE_EXCLUDED = ["animalSounds", "visualStorytelling"];
 
+/* Bumped every time a game screen is opened. A round loop remembers the token it
+   started with, so a leftover timer from a game the student already left can't
+   draw over a different game. */
+let CURRENT_GAME_TOKEN = 0;
+
 function startGameFlow(activityId, studentId){
+  CURRENT_GAME_TOKEN++;
   const activity = findActivity(activityId);
   const student = getStudent(studentId);
   const el = document.getElementById("view-game-play");
@@ -263,7 +269,9 @@ function sample(arr, n){ return shuffle(arr).slice(0, n); }
    ctx.onRoundResult({correct, missed, responseTime, hintUsed}) exactly once. */
 function runRounds(ctx, roundFn){
   let round = 0;
+  const token = CURRENT_GAME_TOKEN;
   function nextRound(){
+    if (token !== CURRENT_GAME_TOKEN || !window.location.hash.startsWith("#play/")) return;  // student left this game
     round++;
     if (round > ctx.rounds){ finishSession(ctx); return; }
     const stageEl = renderStage(ctx, `Round ${round} / ${ctx.rounds}`, "");
@@ -442,6 +450,8 @@ GAMES.sackBear = {
     let roundNum = 0;
     let awaitingClick = false;
     let roundTimer, tickTimer, targetHole = null;
+    const token = CURRENT_GAME_TOKEN;   // identifies this play session
+    const stillHere = () => token === CURRENT_GAME_TOKEN && window.location.hash.startsWith("#play/");
 
     function renderBoard(secondsLeft){
       return `
@@ -455,6 +465,7 @@ GAMES.sackBear = {
     }
 
     function tickOverallTimer(){
+      if (!stillHere()){ clearInterval(tickTimer); clearTimeout(roundTimer); return; }  // student left (or started another game)
       const secondsLeft = Math.max(0, Math.round((endAt - Date.now())/1000));
       const label = document.querySelector("#game-stage")?.lastElementChild;
       if (label) label.textContent = `Time remaining in game: ${secondsLeft}s`;
@@ -467,6 +478,7 @@ GAMES.sackBear = {
     }
 
     function nextTarget(stageEl){
+      if (!stageEl.isConnected || !stillHere()){ clearInterval(tickTimer); clearTimeout(roundTimer); return; }  // student left (or started another game)
       if (Date.now() >= endAt){ clearInterval(tickTimer); finishSession(ctx); return; }
       roundNum++;
       targetHole = 1 + Math.floor(Math.random() * 9);
@@ -480,7 +492,7 @@ GAMES.sackBear = {
       awaitingClick = true;
 
       roundTimer = setTimeout(() => {
-        if (!awaitingClick) return;
+        if (!awaitingClick || !stillHere()) return;
         awaitingClick = false;
         ctx.stats.missed++;
         activeHole.innerHTML = `<span class="hole-num">${targetHole}</span>`;
