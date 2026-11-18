@@ -32,7 +32,7 @@ function showView(viewKey){
     if (el) el.classList.toggle("hidden", id !== viewKey);
   });
   document.getElementById("main-content").focus({ preventScroll: true });
-  window.scrollTo({ top: 0, behavior: getSettings().reducedMotion ? "auto" : "smooth" });
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 function setActiveNav(routeKey){

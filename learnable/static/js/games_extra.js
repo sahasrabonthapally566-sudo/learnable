@@ -244,10 +244,8 @@ GAMES.colorTapping = {
         ctx.onRoundResult(res);
       };
       const bar = document.getElementById("ct-bar");
-      if (!getSettings().reducedMotion){
-        bar.style.transition = `width ${limitMs}ms linear`;
-        requestAnimationFrame(() => requestAnimationFrame(() => { bar.style.width = "0%"; }));
-      }
+      bar.style.transition = `width ${limitMs}ms linear`;
+      requestAnimationFrame(() => requestAnimationFrame(() => { bar.style.width = "0%"; }));
       timer = setTimeout(() => finish({ correct: false, missed: true }), limitMs);
       document.getElementById("ct-grid").addEventListener("click", (e) => {
         const btn = e.target.closest("button[data-color]");
@@ -722,10 +720,8 @@ GAMES.visualMemory = {
         <div class="memory-grid" id="vm-items">${items.map(s => `<span>${s}</span>`).join("")}</div>
         <div class="sack-timer" aria-hidden="true"><span id="vm-bar" style="width:100%"></span></div>`;
       const bar = document.getElementById("vm-bar");
-      if (!getSettings().reducedMotion){
-        bar.style.transition = `width ${studyMs}ms linear`;
-        requestAnimationFrame(() => requestAnimationFrame(() => { bar.style.width = "0%"; }));
-      }
+      bar.style.transition = `width ${studyMs}ms linear`;
+      requestAnimationFrame(() => requestAnimationFrame(() => { bar.style.width = "0%"; }));
       setTimeout(() => {
         if (!alive(stageEl)) return;
         choiceRound(ctx, stageEl, {

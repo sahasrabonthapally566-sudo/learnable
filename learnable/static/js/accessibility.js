@@ -8,7 +8,6 @@ function applySettings(){
   const s = getSettings();
   document.documentElement.style.setProperty("--font-scale", s.fontScale);
   document.body.classList.toggle("high-contrast", !!s.highContrast);
-  document.body.classList.toggle("reduced-motion", !!s.reducedMotion);
   return s;
 }
 
@@ -55,33 +54,11 @@ function renderAccessibilityView(){
 
       <div class="a11y-row">
         <div>
-          <div class="a11y-label">🎞️ Reduced motion</div>
-          <div class="a11y-desc">Minimize animations and transitions.</div>
-        </div>
-        <label class="switch">
-          <input type="checkbox" id="toggle-motion" ${s.reducedMotion ? "checked" : ""}>
-          <span class="slider" role="presentation"></span>
-        </label>
-      </div>
-
-      <div class="a11y-row">
-        <div>
           <div class="a11y-label">🔊 Audio assistance</div>
           <div class="a11y-desc">Enable spoken words/instructions where an activity supports it.</div>
         </div>
         <label class="switch">
           <input type="checkbox" id="toggle-audio" ${s.audioAssistance ? "checked" : ""}>
-          <span class="slider" role="presentation"></span>
-        </label>
-      </div>
-
-      <div class="a11y-row">
-        <div>
-          <div class="a11y-label">💬 Captions / text alternatives</div>
-          <div class="a11y-desc">Show text alongside audio and icon-only content.</div>
-        </div>
-        <label class="switch">
-          <input type="checkbox" id="toggle-captions" ${s.captions ? "checked" : ""}>
           <span class="slider" role="presentation"></span>
         </label>
       </div>
@@ -109,9 +86,7 @@ function renderAccessibilityView(){
     document.getElementById("font-scale-label").textContent = Math.round(getSettings().fontScale * 100) + "%";
   });
   document.getElementById("toggle-contrast").addEventListener("change", e => updateSetting("highContrast", e.target.checked));
-  document.getElementById("toggle-motion").addEventListener("change", e => updateSetting("reducedMotion", e.target.checked));
   document.getElementById("toggle-audio").addEventListener("change", e => updateSetting("audioAssistance", e.target.checked));
-  document.getElementById("toggle-captions").addEventListener("change", e => updateSetting("captions", e.target.checked));
 }
 
 function renderSettingsView(){

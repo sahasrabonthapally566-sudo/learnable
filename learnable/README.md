@@ -93,9 +93,8 @@ numbers, longer time limits, larger tracing tolerance for Moderate).
   (based only on accuracy/response time/completion) that is clearly
   labeled as *not* a diagnosis or clinical assessment. The teacher stays
   in control and can always override it.
-- **Accessibility** — adjustable text size, high-contrast mode, reduced
-  motion, audio assistance (Text-to-Speech), and captions/text
-  alternatives — all persisted locally. Keyboard navigation and visible
+- **Accessibility** — adjustable text size, high-contrast mode, and audio
+  assistance (Text-to-Speech) — all persisted locally. Keyboard navigation and visible
   focus states are supported throughout.
 - **Offline-friendly** — a small service worker caches the app shell so
   it keeps working after the first load; all data already lives in

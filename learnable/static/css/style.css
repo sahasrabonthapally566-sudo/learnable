@@ -52,13 +52,6 @@ body.high-contrast{
   --focus-ring: 3px solid #ffe066;
 }
 
-body.reduced-motion, body.reduced-motion *{
-  animation-duration: 0.001s !important;
-  animation-iteration-count: 1 !important;
-  transition-duration: 0.001s !important;
-  scroll-behavior: auto !important;
-}
-
 *{ box-sizing: border-box; }
 
 html{ font-size: calc(16px * var(--font-scale)); }

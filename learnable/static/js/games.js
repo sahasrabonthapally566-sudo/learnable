@@ -251,14 +251,13 @@ function renderStage(ctx, roundLabel, stageHtml, bottomHtml){
 }
 
 function showFeedbackThen(stageEl, correct, cb){
-  const s = getSettings();
   const banner = document.createElement("div");
   banner.className = `feedback-banner ${correct ? "good" : "meh"}`;
   banner.textContent = correct
     ? pick(["Great job! 🌟", "Excellent! 🎉", "You got it! 👏"])
     : pick(["Good effort! Let's try the next one! 💪", "Keep going, you're learning! 🌱"]);
   stageEl.appendChild(banner);
-  setTimeout(cb, s.reducedMotion ? 500 : 1100);
+  setTimeout(cb, 1100);
 }
 
 function pick(arr){ return arr[Math.floor(Math.random() * arr.length)]; }

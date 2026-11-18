@@ -590,10 +590,8 @@ GAMES.shapeMemoryDraw = {
       c2d.strokeStyle = "#4c86b8"; c2d.lineWidth = 6; c2d.lineCap = "round"; c2d.lineJoin = "round";
       c2d.beginPath(); guide.forEach((p, i) => i ? c2d.lineTo(p[0], p[1]) : c2d.moveTo(p[0], p[1])); c2d.stroke();
       const bar = document.getElementById("ms-bar");
-      if (!getSettings().reducedMotion){
-        bar.style.transition = `width ${studyMs}ms linear`;
-        requestAnimationFrame(() => requestAnimationFrame(() => { bar.style.width = "0%"; }));
-      }
+      bar.style.transition = `width ${studyMs}ms linear`;
+      requestAnimationFrame(() => requestAnimationFrame(() => { bar.style.width = "0%"; }));
       let done = false, tracer = null, startTime = null;
       setTimeout(() => {
         if (!alive(stageEl)) return;

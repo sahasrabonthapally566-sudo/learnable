@@ -88,10 +88,8 @@ function memoryPairsRound(ctx, stageEl, o){
   };
   if (o.limitMs){
     const bar = document.getElementById("mp-bar");
-    if (!getSettings().reducedMotion){
-      bar.style.transition = `width ${o.limitMs}ms linear`;
-      requestAnimationFrame(() => requestAnimationFrame(() => { bar.style.width = "0%"; }));
-    }
+    bar.style.transition = `width ${o.limitMs}ms linear`;
+    requestAnimationFrame(() => requestAnimationFrame(() => { bar.style.width = "0%"; }));
     timer = setTimeout(() => finish({ correct: false, missed: true }), o.limitMs);
   }
   grid.addEventListener("click", (e) => {
@@ -280,10 +278,8 @@ GAMES.findTheObject = {
         ctx.onRoundResult(res);
       };
       const bar = document.getElementById("fo-bar");
-      if (!getSettings().reducedMotion){
-        bar.style.transition = `width ${limitMs}ms linear`;
-        requestAnimationFrame(() => requestAnimationFrame(() => { bar.style.width = "0%"; }));
-      }
+      bar.style.transition = `width ${limitMs}ms linear`;
+      requestAnimationFrame(() => requestAnimationFrame(() => { bar.style.width = "0%"; }));
       timer = setTimeout(() => finish({ correct: false, missed: true }), limitMs);
       document.getElementById("fo-grid").addEventListener("click", (e) => {
         const btn = e.target.closest("button[data-emoji]");

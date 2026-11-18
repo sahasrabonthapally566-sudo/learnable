@@ -194,11 +194,14 @@ function getSessionsForStudent(studentId){
 const DEFAULT_SETTINGS = {
   fontScale: 1,
   highContrast: false,
-  reducedMotion: false,
-  audioAssistance: true,
-  captions: true
+  audioAssistance: true
 };
-function getSettings(){ return { ...DEFAULT_SETTINGS, ...laGet(LA_KEYS.settings, {}) }; }
+function getSettings(){
+  const s = { ...DEFAULT_SETTINGS, ...laGet(LA_KEYS.settings, {}) };
+  // "Reduced motion" and "Captions" were removed; ignore values saved by older versions.
+  delete s.reducedMotion; delete s.captions;
+  return s;
+}
 function saveSettings(settings){ laSet(LA_KEYS.settings, settings); }
 
 /* Teacher (simulated auth) */
