@@ -77,6 +77,7 @@ function showAppShell(){
   document.getElementById("app-shell").classList.remove("hidden");
   const teacher = getTeacher();
   document.getElementById("header-teacher-name").textContent = teacher ? teacher.name : "Teacher";
+  if (window.refreshNavLayout) window.refreshNavLayout();   // header is measurable now
   handleRoute();
 }
 
@@ -97,11 +98,45 @@ function initLogin(){
 /* ---------------- Nav wiring ---------------- */
 
 function initNav(){
-  document.getElementById("nav-toggle").addEventListener("click", () => {
-    const sidebar = document.getElementById("sidebar");
-    const collapsed = sidebar.classList.toggle("collapsed");
-    document.getElementById("nav-toggle").setAttribute("aria-expanded", String(!collapsed));
+  const sidebar = document.getElementById("sidebar");
+  const toggle = document.getElementById("nav-toggle");
+  const backdrop = document.getElementById("nav-backdrop");
+  const header = document.querySelector(".app-header");
+  const smallScreen = window.matchMedia("(max-width: 900px)");
+
+  /* On small screens the sidebar is a slide-out drawer (closed by default).
+     On wide screens it is always docked, so "open" is simply always true. */
+  // Measure the real header height (it is 0 while the login screen is showing).
+  function updateHeaderHeight(){
+    if (header.offsetHeight > 0) document.documentElement.style.setProperty("--header-h", header.offsetHeight + "px");
+  }
+  window.refreshNavLayout = updateHeaderHeight;      // called again once the app shell is shown
+  function setMenu(open){
+    updateHeaderHeight();
+    sidebar.classList.toggle("collapsed", !open);
+    toggle.setAttribute("aria-expanded", String(open));
+    backdrop.classList.toggle("show", open && smallScreen.matches);
+    sidebar.inert = smallScreen.matches && !open;      // closed drawer isn't reachable by Tab
+  }
+  const isOpen = () => !sidebar.classList.contains("collapsed");
+  function syncToScreen(){
+    setMenu(!smallScreen.matches);                      // closed on phones, docked on desktop
+  }
+
+  toggle.addEventListener("click", () => setMenu(!isOpen()));
+
+  // Choosing a section closes the drawer right away so the page behind is visible.
+  // (Listening to the click, not the hash, also covers tapping the section you're already on.)
+  sidebar.addEventListener("click", (e) => {
+    if (e.target.closest("a") && smallScreen.matches) setMenu(false);
   });
+  backdrop.addEventListener("click", () => setMenu(false));
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && smallScreen.matches && isOpen()){ setMenu(false); toggle.focus(); }
+  });
+  smallScreen.addEventListener("change", syncToScreen);
+  window.addEventListener("resize", updateHeaderHeight);
+  syncToScreen();
 
   const profileBtn = document.getElementById("profile-btn");
   const dropdown = document.getElementById("profile-dropdown");

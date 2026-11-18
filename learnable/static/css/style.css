@@ -169,6 +169,8 @@ button, a, input, select, textarea{ font-family: inherit; }
 .profile-dropdown a:hover, .profile-dropdown button:hover{ background: var(--color-bg-soft); }
 
 .app-body{ display:flex; flex:1; }
+.nav-backdrop{ display:none; }
+@media (max-width: 900px){ .nav-backdrop{ display:block; } }
 
 .sidebar{
   width: 210px; background: var(--color-bg-soft); border-right: 1px solid var(--color-border);
@@ -187,8 +189,10 @@ button, a, input, select, textarea{ font-family: inherit; }
 
 @media (max-width: 900px){
   .header-nav{ display:none; }
-  .sidebar{ position:fixed; left:0; top:56px; bottom:0; z-index:40; transform:translateX(0); transition:transform var(--motion-duration); }
-  .sidebar.collapsed{ transform:translateX(-100%); }
+  .sidebar{ position:fixed; left:0; top:var(--header-h, 56px); bottom:0; z-index:40; transform:translateX(0); transition:transform var(--motion-duration); box-shadow:4px 0 18px rgba(0,0,0,0.18); overflow-y:auto; }
+  .sidebar.collapsed{ transform:translateX(-100%); box-shadow:none; }
+  .nav-backdrop{ position:fixed; left:0; right:0; bottom:0; top:var(--header-h, 56px); background:rgba(0,0,0,0.28); z-index:35; opacity:0; pointer-events:none; transition:opacity var(--motion-duration); }
+  .nav-backdrop.show{ opacity:1; pointer-events:auto; }
   .main-content{ padding: 16px; }
 }
 
